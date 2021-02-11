@@ -1,24 +1,38 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { JugadorService } from "../service/jugador.service";
-import { FormControl } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'jugador-app',
   templateUrl: "./jugador.component.html"
 })
 
-export class JugadorComponent {
+export class JugadorComponent implements OnInit{
 
-  nameControl = new FormControl('');
+  Jugador1 = new FormControl;
+  Jugador2 = new FormControl;
 
+  myForm: FormGroup;
 
   constructor(http: HttpClient, @Inject("BASE_URL") baseUrl: string,
-    protected JugadorService: JugadorService) {
+    protected JugadorService: JugadorService,public fb: FormBuilder) {
+      this.myForm = this.fb.group({
+        Jugador1: ['', [Validators.required]],
+        Jugador2: ['', [Validators.required]],
+      });
 
   }
+
+  ngOnInit() { }
 
   public Add() {
-    this.JugadorService.Add(this.nameControl.value);
+    this.JugadorService.Add(this.Jugador1.value, this.Jugador2.value);
+
   }
+
+  saveData(){
+    console.log(this.myForm.value);
+  }
+
 }

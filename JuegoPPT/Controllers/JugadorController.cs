@@ -21,14 +21,20 @@ namespace JuegoPPT.Controllers
         }
 
         [HttpPost("[action]")]
-        public Respuesta Add([FromBody] Jugador1ViewModels model)
+        public Respuesta Add([FromBody] JugadorViewModels model)
         {
             Respuesta oR = new Respuesta();
             try
             {
                 Models.Jugador1 oJugador = new Models.Jugador1();
+                Models.Jugador2 oJugador2 = new Models.Jugador2();
+                
                 oJugador.NombreJugador1 = model.NombreJugador1;
                 db.Jugador1s.Add(oJugador);
+                db.SaveChanges();
+
+                oJugador2.NombreJugador2 = model.NombreJugador2;
+                db.Jugador2s.Add(oJugador2);
                 db.SaveChanges();
                 oR.Succes = 1;
             }

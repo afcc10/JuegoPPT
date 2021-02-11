@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JugadorComponent } from './jugadores/jugador.component'
 
 import { JugadorService } from './service/jugador.service';
+import { RondasComponent } from './rondas/rondas.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JugadorService } from './service/jugador.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    JugadorComponent
+    JugadorComponent,
+    RondasComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,7 +32,8 @@ import { JugadorService } from './service/jugador.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'Juego', component: JugadorComponent}
+      { path: 'Juego', component: JugadorComponent},
+      { path: 'Rondas', component: RondasComponent}
     ])
   ],
   providers: [JugadorService],

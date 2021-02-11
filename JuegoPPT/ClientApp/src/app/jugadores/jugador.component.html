@@ -1,2 +1,29 @@
-<input type="text" [formControl]="nameControl"/>
-<input type="button" (click)="Add()" value="Iniciar"/>
+<!--<form #form="ngForm">
+    <label for="Jugador1">Jugador 1</label>
+    <input type="text" id="Jugador1" name="Jugador1" [(ngModel)]="Jugador1" ngModel required />
+    <br />
+    <label for="Jugador2">Jugador 2</label>
+    <input type="text" id="Jugador2" name="Jugador2" [(ngModel)]="Jugador2" ngModel required />
+    <br />
+    <button type="submit" [disabled]="form.invalid && Jugador1 == '' && Jugador2 == ''" (click)="Add()" value="Iniciar" [routerLink]="['/Rondas']"> Iniciar</button>
+</form>-->
+
+<form [formGroup]="myForm" (ngSubmit)="saveData()" novalidate>
+  <div>
+    <label>Jugador 1</label>
+    <input formControlName="Jugador1" placeholder="Digite el nombre" type="text" [formControl]="Jugador1" required />
+  </div>
+  <div *ngIf="myForm.controls['Jugador1'].invalid && (myForm.controls['Jugador1'].dirty)" class="alert alert-danger">
+    <div *ngIf="myForm.controls['Jugador1'].errors.required"> Campo requerido </div>
+  </div>
+  <div>
+    <label>Jugador 2</label>
+    <input formControlName="Jugador2" placeholder="Digite el nombre" type="text" [formControl]="Jugador2" required  />
+  </div>
+  <div *ngIf="myForm.controls['Jugador2'].invalid && (myForm.controls['Jugador2'].dirty)" class="alert alert-danger">
+    <div *ngIf="myForm.controls['Jugador2'].errors.required"> Campo requerido </div>
+  </div>
+  <div>
+    <button type="submit" [disabled]="myForm.invalid" (click)="Add()" [routerLink]="['/Rondas']"> Iniciar</button>
+  </div>
+</form>
