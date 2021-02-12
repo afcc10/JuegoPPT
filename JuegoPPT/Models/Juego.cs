@@ -12,12 +12,12 @@ namespace JuegoPPT.Models
             Ronda = new HashSet<Ronda>();
         }
 
-        public int RowidJuego { get; set; }
-        public int? RowidJugador1 { get; set; }
-        public int? RowidJugador2 { get; set; }
+        public string CodigoJuego { get; set; }
+        public string CodigoJugador1 { get; set; }
+        public string CodigoJugador2 { get; set; }
 
-        public virtual Jugador1 RowidJugador1Navigation { get; set; }
-        public virtual Jugador2 RowidJugador2Navigation { get; set; }
+        public virtual Jugador1 CodigoJugador1Navigation { get; set; }
+        public virtual Jugador2 CodigoJugador2Navigation { get; set; }
         public virtual ICollection<Ronda> Ronda { get; set; }
     }
 }

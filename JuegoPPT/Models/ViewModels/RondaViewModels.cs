@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace JuegoPPT.Models
+namespace JuegoPPT.Models.ViewModels
 {
-    public partial class Ronda
+    public class RondaViewModels
     {
         public string CodigoRonda { get; set; }
         public string CodigoJuego { get; set; }
@@ -14,9 +14,5 @@ namespace JuegoPPT.Models
         public short? MovimientoJugador1 { get; set; }
         public short? MovimientoJugador2 { get; set; }
         public short? NumeroRonda { get; set; }
-
-        public virtual Juego CodigoJuegoNavigation { get; set; }
-        public virtual Jugador1 CodigoJugador1Navigation { get; set; }
-        public virtual Jugador2 CodigoJugador2Navigation { get; set; }
     }
 }

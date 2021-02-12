@@ -37,36 +37,48 @@ namespace JuegoPPT.Models
 
             modelBuilder.Entity<Juego>(entity =>
             {
-                entity.HasKey(e => e.RowidJuego)
-                    .HasName("PK__Juego__FCBF20EB7774A2EF");
+                entity.HasKey(e => e.CodigoJuego)
+                    .HasName("PK__Juego__D9BE5F62390E2991");
 
                 entity.ToTable("Juego");
 
-                entity.Property(e => e.RowidJuego).HasColumnName("rowid_juego");
+                entity.Property(e => e.CodigoJuego)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_juego");
 
-                entity.Property(e => e.RowidJugador1).HasColumnName("rowid_jugador_1");
+                entity.Property(e => e.CodigoJugador1)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_1");
 
-                entity.Property(e => e.RowidJugador2).HasColumnName("rowid_jugador_2");
+                entity.Property(e => e.CodigoJugador2)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_2");
 
-                entity.HasOne(d => d.RowidJugador1Navigation)
+                entity.HasOne(d => d.CodigoJugador1Navigation)
                     .WithMany(p => p.Juegos)
-                    .HasForeignKey(d => d.RowidJugador1)
-                    .HasConstraintName("FK__Juego__rowid_jug__2A4B4B5E");
+                    .HasForeignKey(d => d.CodigoJugador1)
+                    .HasConstraintName("FK__Juego__codigo_ju__3A81B327");
 
-                entity.HasOne(d => d.RowidJugador2Navigation)
+                entity.HasOne(d => d.CodigoJugador2Navigation)
                     .WithMany(p => p.Juegos)
-                    .HasForeignKey(d => d.RowidJugador2)
-                    .HasConstraintName("FK__Juego__rowid_jug__2B3F6F97");
+                    .HasForeignKey(d => d.CodigoJugador2)
+                    .HasConstraintName("FK__Juego__codigo_ju__3B75D760");
             });
 
             modelBuilder.Entity<Jugador1>(entity =>
             {
-                entity.HasKey(e => e.RowidJugador1)
-                    .HasName("PK__Jugador1__6CA177392071C00F");
+                entity.HasKey(e => e.CodigoJugador1)
+                    .HasName("PK__Jugador1__463A45A731E326BE");
 
                 entity.ToTable("Jugador1");
 
-                entity.Property(e => e.RowidJugador1).HasColumnName("rowid_jugador_1");
+                entity.Property(e => e.CodigoJugador1)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_1");
 
                 entity.Property(e => e.NombreJugador1)
                     .HasMaxLength(40)
@@ -76,12 +88,15 @@ namespace JuegoPPT.Models
 
             modelBuilder.Entity<Jugador2>(entity =>
             {
-                entity.HasKey(e => e.RowidJugador2)
-                    .HasName("PK__Jugador2__6CA1773884A61D15");
+                entity.HasKey(e => e.CodigoJugador2)
+                    .HasName("PK__Jugador2__463A45A6CA42AB95");
 
                 entity.ToTable("Jugador2");
 
-                entity.Property(e => e.RowidJugador2).HasColumnName("rowid_jugador_2");
+                entity.Property(e => e.CodigoJugador2)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_2");
 
                 entity.Property(e => e.NombreJugador2)
                     .HasMaxLength(40)
@@ -91,10 +106,31 @@ namespace JuegoPPT.Models
 
             modelBuilder.Entity<Ronda>(entity =>
             {
-                entity.HasKey(e => e.RowidRonda)
-                    .HasName("PK__Ronda__0B2D53366C948F4B");
+                entity.HasKey(e => e.CodigoRonda)
+                    .HasName("PK__Ronda__1202A179BE0FAD5C");
 
-                entity.Property(e => e.RowidRonda).HasColumnName("rowid_ronda");
+                entity.Property(e => e.CodigoRonda)
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_ronda");
+
+                entity.Property(e => e.CodigoJuego)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_juego");
+
+                entity.Property(e => e.CodigoJugador1)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_1");
+
+                entity.Property(e => e.CodigoJugador2)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_jugador_2");
 
                 entity.Property(e => e.MovimientoJugador1).HasColumnName("movimiento_jugador_1");
 
@@ -102,26 +138,23 @@ namespace JuegoPPT.Models
 
                 entity.Property(e => e.NumeroRonda).HasColumnName("numero_ronda");
 
-                entity.Property(e => e.RowidJuego).HasColumnName("rowid_juego");
-
-                entity.Property(e => e.RowidJugador1).HasColumnName("rowid_jugador_1");
-
-                entity.Property(e => e.RowidJugador2).HasColumnName("rowid_jugador_2");
-
-                entity.HasOne(d => d.RowidJuegoNavigation)
+                entity.HasOne(d => d.CodigoJuegoNavigation)
                     .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.RowidJuego)
-                    .HasConstraintName("FK__Ronda__rowid_jue__300424B4");
+                    .HasForeignKey(d => d.CodigoJuego)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Ronda__codigo_ju__3E52440B");
 
-                entity.HasOne(d => d.RowidJugador1Navigation)
+                entity.HasOne(d => d.CodigoJugador1Navigation)
                     .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.RowidJugador1)
-                    .HasConstraintName("FK__Ronda__rowid_jug__2E1BDC42");
+                    .HasForeignKey(d => d.CodigoJugador1)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Ronda__codigo_ju__3F466844");
 
-                entity.HasOne(d => d.RowidJugador2Navigation)
+                entity.HasOne(d => d.CodigoJugador2Navigation)
                     .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.RowidJugador2)
-                    .HasConstraintName("FK__Ronda__rowid_jug__2F10007B");
+                    .HasForeignKey(d => d.CodigoJugador2)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Ronda__codigo_ju__403A8C7D");
             });
 
             OnModelCreatingPartial(modelBuilder);

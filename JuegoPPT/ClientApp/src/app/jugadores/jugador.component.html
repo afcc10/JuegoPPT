@@ -24,6 +24,6 @@
     <div *ngIf="myForm.controls['Jugador2'].errors.required"> Campo requerido </div>
   </div>
   <div>
-    <button type="submit" [disabled]="myForm.invalid" (click)="Add()" [routerLink]="['/Rondas']"> Iniciar</button>
+    <button type="submit"  (click)="Add()" [routerLink]="['/Rondas']"> Iniciar</button>
   </div>
 </form>

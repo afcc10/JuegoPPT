@@ -36,6 +36,7 @@
     <None Remove="ClientApp\src\app\Interfaces.ts" />
     <None Remove="ClientApp\src\app\jugadores\jugador.component.ts" />
     <None Remove="ClientApp\src\app\service\jugador.service.ts" />
+    <None Remove="ClientApp\src\app\service\ronda.service.ts" />
   </ItemGroup>
 
   <ItemGroup>

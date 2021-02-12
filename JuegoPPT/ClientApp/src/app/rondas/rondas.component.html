@@ -1,1 +1,13 @@
-<p>rondas works!</p>
+<div>
+  <label> Jugador 1 </label>
+  {{NombreJugador1}}
+</div>
+
+<form [formGroup]="myForm">
+  <div>
+    <p><button type="submit" (click)="Add()" [routerLink]="['/Rondas']"> Piedra</button></p>
+    <p><button type="submit" (click)="Add()" [routerLink]="['/Rondas']"> Papel</button></p>
+    <p><button type="submit" (click)="Add()" [routerLink]="['/Rondas']"> Tijera</button></p>
+  </div>  
+</form>
+

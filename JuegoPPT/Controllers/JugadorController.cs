@@ -28,11 +28,13 @@ namespace JuegoPPT.Controllers
             {
                 Models.Jugador1 oJugador = new Models.Jugador1();
                 Models.Jugador2 oJugador2 = new Models.Jugador2();
-                
+
+                oJugador.CodigoJugador1 = model.CodigoJugador1;
                 oJugador.NombreJugador1 = model.NombreJugador1;
                 db.Jugador1s.Add(oJugador);
                 db.SaveChanges();
 
+                oJugador2.CodigoJugador2 = model.CodigoJugador2;
                 oJugador2.NombreJugador2 = model.NombreJugador2;
                 db.Jugador2s.Add(oJugador2);
                 db.SaveChanges();

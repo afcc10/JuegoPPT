@@ -12,6 +12,9 @@ export class JugadorComponent implements OnInit{
 
   Jugador1 = new FormControl;
   Jugador2 = new FormControl;
+  CodigoJugador1: string;
+  CodigoJugador2: string;
+  
 
   myForm: FormGroup;
 
@@ -26,13 +29,23 @@ export class JugadorComponent implements OnInit{
 
   ngOnInit() { }
 
+
   public Add() {
-    this.JugadorService.Add(this.Jugador1.value, this.Jugador2.value);
+    this.CodigoJugador1 = Math.random().toString();
+    this.CodigoJugador2 = Math.random().toString();
+
+    localStorage.setItem("CodigoJugador1", this.CodigoJugador1);
+    localStorage.setItem("NombreJugador1", this.Jugador1.value);
+    localStorage.setItem("CodigoJugador2", this.CodigoJugador2);
+    localStorage.setItem("NombreJugador2", this.Jugador2.value);
+
+        this.JugadorService.Add(this.CodigoJugador1, this.Jugador1.value, this.CodigoJugador2, this.Jugador2.value);
 
   }
 
-  saveData(){
+  saveData() {
     console.log(this.myForm.value);
   }
+ 
 
 }

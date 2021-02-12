@@ -21,9 +21,9 @@ export class JugadorService {
     this.baseUrl = baseUrl;
   }
 
-  public Add(NombreJugador1, NombreJugador2) {
+  public Add(CodigoJugador1, NombreJugador1, CodigoJugador2, NombreJugador2) {
     this.http.post<Respuesta>(this.baseUrl + 'api/Jugador/add',
-      { 'NombreJugador1': NombreJugador1, 'NombreJugador2': NombreJugador2 }, httpOptions).subscribe(result => {
+      { 'CodigoJugador1': CodigoJugador1, 'NombreJugador1': NombreJugador1, 'CodigoJugador2': CodigoJugador2, 'NombreJugador2': NombreJugador2 }, httpOptions).subscribe(result => {
           console.log(result);  
         },
           error => console.error

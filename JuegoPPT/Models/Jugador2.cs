@@ -13,7 +13,7 @@ namespace JuegoPPT.Models
             Ronda = new HashSet<Ronda>();
         }
 
-        public int RowidJugador2 { get; set; }
+        public string CodigoJugador2 { get; set; }
         public string NombreJugador2 { get; set; }
 
         public virtual ICollection<Juego> Juegos { get; set; }

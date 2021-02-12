@@ -10,9 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JugadorComponent } from './jugadores/jugador.component'
+import { RondasComponent } from './rondas/rondas.component';
 
 import { JugadorService } from './service/jugador.service';
-import { RondasComponent } from './rondas/rondas.component';
+import { RondaService } from './service/ronda.service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { RondasComponent } from './rondas/rondas.component';
       { path: 'Rondas', component: RondasComponent}
     ])
   ],
-  providers: [JugadorService],
+providers: [JugadorService,
+            RondaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
