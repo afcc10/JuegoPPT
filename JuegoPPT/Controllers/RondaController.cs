@@ -32,7 +32,7 @@ namespace JuegoPPT.Controllers
                 oRonda.MovimientoJugador2 = (short)model.MovimientoJugador2;
                 oRonda.NumeroRonda = (short)model.NumeroRonda;
                 oRonda.CodigoJuego = null;
-
+                oRonda.Gano = 0;
 
                 db.Ronda.Add(oRonda);
                 db.SaveChanges();
@@ -44,6 +44,108 @@ namespace JuegoPPT.Controllers
                 oR.Message = ex.Message;
             }
             return oR;
+        }
+
+        [HttpPost("[action]")]
+        public Respuesta ValidarGanador([FromBody] RondaViewModels model)
+        {
+            Respuesta oR = new Respuesta();
+
+            //1 Piedra ; 2 papel ; 3 tijera
+            try
+            {
+                Models.Ronda oRonda = new Models.Ronda();
+
+                // empate
+                if (model.MovimientoJugador1 == model.MovimientoJugador2)
+                {
+                    //Empate
+                }
+                else
+                {
+                    //piedra vs papel
+                    if (model.MovimientoJugador1 == 1 && model.MovimientoJugador2 == 2)
+                    {
+                        //Gana jugador 2
+                        GanaJugador2(model);
+                    }
+                    else
+                    {
+                        //piedra vs tijera
+                        if (model.MovimientoJugador1 == 1 && model.MovimientoJugador2 == 3)
+                        {
+                            // Gana jugador 1
+                            GanaJugador1(model);
+                        }
+                        else
+                        {
+                            // papel vs tijera
+                            if (model.MovimientoJugador1 == 2 && model.MovimientoJugador2 == 3)
+                            {
+                                //gana jugador 2
+                                GanaJugador2(model);
+                            }
+                            else
+                            {
+                                //papel vs piedra
+                                if (model.MovimientoJugador1 == 2 && model.MovimientoJugador2 == 1)
+                                {
+                                    //gana jugador 1
+                                    GanaJugador1(model);
+                                }
+                                else
+                                {
+                                    //tijera vs piedra
+                                    if (model.MovimientoJugador1 == 3 && model.MovimientoJugador2 == 1)
+                                    {
+                                        //gana jugador 2
+                                        GanaJugador2(model);
+                                    }
+                                    else
+                                    {
+                                        //tijera vs papel
+                                        if (model.MovimientoJugador1 == 3 && model.MovimientoJugador2 == 2)
+                                        {
+                                            //gana jugador 1
+                                            GanaJugador1(model);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                oR.Succes = 1;
+            }
+            catch (Exception ex)
+            {
+                oR.Succes = 0;
+                oR.Message = ex.Message;
+            }
+            return oR;
+        }
+
+        public void GanaJugador1(RondaViewModels model)
+        {
+            Models.Ronda oRonda = new Models.Ronda();
+
+            oRonda = db.Ronda
+                                    .Where(x => x.CodigoRonda == model.CodigoRonda
+                                    && x.CodigoJugador1 == model.CodigoJugador1).Single();
+            oRonda.Gano = 1;
+            db.Add(oRonda);
+            db.SaveChanges();
+        }
+        public void GanaJugador2(RondaViewModels model)
+        {
+            Models.Ronda oRonda = new Models.Ronda();
+
+            oRonda = db.Ronda
+                                    .Where(x => x.CodigoRonda == model.CodigoRonda
+                                    && x.CodigoJugador2 == model.CodigoJugador2).Single();
+            oRonda.Gano = 1;
+            db.Add(oRonda);
+            db.SaveChanges();
         }
     }
 }

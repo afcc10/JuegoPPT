@@ -10,13 +10,11 @@ namespace JuegoPPT.Models
         public Jugador2()
         {
             Juegos = new HashSet<Juego>();
-            Ronda = new HashSet<Ronda>();
         }
 
         public string CodigoJugador2 { get; set; }
         public string NombreJugador2 { get; set; }
 
         public virtual ICollection<Juego> Juegos { get; set; }
-        public virtual ICollection<Ronda> Ronda { get; set; }
     }
 }

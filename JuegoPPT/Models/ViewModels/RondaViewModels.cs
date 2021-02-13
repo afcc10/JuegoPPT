@@ -13,5 +13,6 @@ namespace JuegoPPT.Models.ViewModels
         public short? MovimientoJugador1 { get; set; }
         public short? MovimientoJugador2 { get; set; }
         public short? NumeroRonda { get; set; }
+        public short? Gano { get; set; }
     }
 }

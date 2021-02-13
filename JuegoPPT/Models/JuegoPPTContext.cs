@@ -106,13 +106,7 @@ namespace JuegoPPT.Models
 
             modelBuilder.Entity<Ronda>(entity =>
             {
-                entity.HasKey(e => e.CodigoRonda)
-                    .HasName("PK__Ronda__1202A179BE0FAD5C");
-
-                entity.Property(e => e.CodigoRonda)
-                    .HasMaxLength(40)
-                    .IsUnicode(false)
-                    .HasColumnName("codigo_ronda");
+                entity.HasNoKey();
 
                 entity.Property(e => e.CodigoJuego)
                     .HasMaxLength(40)
@@ -129,26 +123,19 @@ namespace JuegoPPT.Models
                     .IsUnicode(false)
                     .HasColumnName("codigo_jugador_2");
 
+                entity.Property(e => e.CodigoRonda)
+                    .IsRequired()
+                    .HasMaxLength(40)
+                    .IsUnicode(false)
+                    .HasColumnName("codigo_ronda");
+
+                entity.Property(e => e.Gano).HasColumnName("gano");
+
                 entity.Property(e => e.MovimientoJugador1).HasColumnName("movimiento_jugador_1");
 
                 entity.Property(e => e.MovimientoJugador2).HasColumnName("movimiento_jugador_2");
 
                 entity.Property(e => e.NumeroRonda).HasColumnName("numero_ronda");
-
-                entity.HasOne(d => d.CodigoJuegoNavigation)
-                    .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.CodigoJuego)
-                    .HasConstraintName("FK__Ronda__codigo_ju__3E52440B");
-
-                entity.HasOne(d => d.CodigoJugador1Navigation)
-                    .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.CodigoJugador1)
-                    .HasConstraintName("FK__Ronda__codigo_ju__3F466844");
-
-                entity.HasOne(d => d.CodigoJugador2Navigation)
-                    .WithMany(p => p.Ronda)
-                    .HasForeignKey(d => d.CodigoJugador2)
-                    .HasConstraintName("FK__Ronda__codigo_ju__403A8C7D");
             });
 
             OnModelCreatingPartial(modelBuilder);
