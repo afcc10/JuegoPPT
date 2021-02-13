@@ -11,10 +11,10 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { JugadorComponent } from './jugadores/jugador.component'
 import { RondasComponent } from './rondas/rondas.component';
+import { RondaJugador2Component } from './ronda-jugador2/ronda-jugador2.component';
 
 import { JugadorService } from './service/jugador.service';
 import { RondaService } from './service/ronda.service';
-
 
 @NgModule({
   declarations: [
@@ -24,7 +24,8 @@ import { RondaService } from './service/ronda.service';
     CounterComponent,
     FetchDataComponent,
     JugadorComponent,
-    RondasComponent
+    RondasComponent,
+    RondaJugador2Component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -35,7 +36,8 @@ import { RondaService } from './service/ronda.service';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'Juego', component: JugadorComponent},
-      { path: 'Rondas', component: RondasComponent}
+      { path: 'Rondas', component: RondasComponent},
+      { path: 'RondasJ2', component: RondaJugador2Component}
     ])
   ],
 providers: [JugadorService,

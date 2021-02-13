@@ -14,7 +14,7 @@ export class JugadorComponent implements OnInit{
   Jugador2 = new FormControl;
   CodigoJugador1: string;
   CodigoJugador2: string;
-  
+
 
   myForm: FormGroup;
 
@@ -39,13 +39,13 @@ export class JugadorComponent implements OnInit{
     localStorage.setItem("CodigoJugador2", this.CodigoJugador2);
     localStorage.setItem("NombreJugador2", this.Jugador2.value);
 
-        this.JugadorService.Add(this.CodigoJugador1, this.Jugador1.value, this.CodigoJugador2, this.Jugador2.value);
+    this.JugadorService.Add(this.CodigoJugador1, this.Jugador1.value, this.CodigoJugador2, this.Jugador2.value);
 
   }
 
   saveData() {
     console.log(this.myForm.value);
   }
- 
+
 
 }

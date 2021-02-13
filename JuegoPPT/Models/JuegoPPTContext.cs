@@ -115,19 +115,16 @@ namespace JuegoPPT.Models
                     .HasColumnName("codigo_ronda");
 
                 entity.Property(e => e.CodigoJuego)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasColumnName("codigo_juego");
 
                 entity.Property(e => e.CodigoJugador1)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasColumnName("codigo_jugador_1");
 
                 entity.Property(e => e.CodigoJugador2)
-                    .IsRequired()
                     .HasMaxLength(40)
                     .IsUnicode(false)
                     .HasColumnName("codigo_jugador_2");
@@ -141,19 +138,16 @@ namespace JuegoPPT.Models
                 entity.HasOne(d => d.CodigoJuegoNavigation)
                     .WithMany(p => p.Ronda)
                     .HasForeignKey(d => d.CodigoJuego)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Ronda__codigo_ju__3E52440B");
 
                 entity.HasOne(d => d.CodigoJugador1Navigation)
                     .WithMany(p => p.Ronda)
                     .HasForeignKey(d => d.CodigoJugador1)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Ronda__codigo_ju__3F466844");
 
                 entity.HasOne(d => d.CodigoJugador2Navigation)
                     .WithMany(p => p.Ronda)
                     .HasForeignKey(d => d.CodigoJugador2)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Ronda__codigo_ju__403A8C7D");
             });
 
